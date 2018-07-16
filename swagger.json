@@ -1,0 +1,534 @@
+{
+    "swagger" : "2.0",
+    "info" : {
+      "version" : "1.0.0",
+      "title" : "Seguro Vehicular",
+      "description" : "¡Bienvenido a la API de seguro vehicular! \nEsta documentación proporciona instrucciones para acceder a la API y debería ayudarlo a familiarizarse con los recursos disponibles.\n ### Cómo empezar\n ----------------------------------------------------------------\n El acceso a la API requiere un token de acceso que se usará en solicitudes posteriores como consultas, registros y actualizaciones\n ### Solicitud de token de acceso\n ----------------------------------------------------------------\n Para obtener su token de acceso deberá llamar al siguiente método POST\n   `testsoat.interseguro.com.pe/soat/oauth/token`\n Ingresando como parámetros su información (como grand_type, el ID y el secreto de cliente)\n Si se aprueba esta petición, se le proporcionará un token de acceso\n El token se puede obtener en la /oauth/tokenURL.\n\n\n ### Uso\n  ----------------------------------------------------------------\n Para consumir el API se accedera a través de llamadas HTTP usando POST a ....\n ### \n     testsoat.interseguro.com.pe/soat/general?access_token=$ACCESS_TOKEN [POST]\n"
+    },
+    "tags" : [ {
+      "name" : "Autenticación"
+    }, {
+      "name" : "Autos"
+    }, {
+      "name" : "Clientes"
+    }, {
+      "name" : "Otras Consultas"
+    } ],
+    "paths" : {
+      "/oauth/token" : {
+        "post" : {
+          "tags" : [ "Autenticación" ],
+          "summary" : "Obtener un token de autenticación",
+          "parameters" : [ {
+            "name" : "grant_type",
+            "in" : "query",
+            "description" : "Tipo de acceso",
+            "required" : true,
+            "type" : "string"
+          }, {
+            "name" : "client_id",
+            "in" : "query",
+            "description" : "Identificador",
+            "required" : true,
+            "type" : "string"
+          }, {
+            "name" : "client_secret",
+            "in" : "query",
+            "description" : " Clave",
+            "required" : true,
+            "type" : "string"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "success",
+              "schema" : {
+                "$ref" : "#/definitions/Autenticacionexitosa"
+              }
+            },
+            "401" : {
+              "description" : "No Autorizado"
+            }
+          }
+        }
+      },
+      "/insertAuto" : {
+        "post" : {
+          "tags" : [ "Autos" ],
+          "summary" : "Crear un nuevo registro de auto",
+          "parameters" : [ {
+            "$ref" : "#/parameters/Placa"
+          }, {
+            "$ref" : "#/parameters/Clase"
+          }, {
+            "$ref" : "#/parameters/Modelo"
+          }, {
+            "$ref" : "#/parameters/fabricacion"
+          }, {
+            "$ref" : "#/parameters/num_asientos"
+          }, {
+            "$ref" : "#/parameters/uso"
+          }, {
+            "$ref" : "#/parameters/num_serie"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Ok"
+            }
+          }
+        }
+      },
+      "/editAuto" : {
+        "put" : {
+          "tags" : [ "Autos" ],
+          "summary" : "Actualiza la información de un auto",
+          "parameters" : [ {
+            "$ref" : "#/parameters/Placa"
+          }, {
+            "$ref" : "#/parameters/Clase"
+          }, {
+            "$ref" : "#/parameters/Modelo"
+          }, {
+            "$ref" : "#/parameters/fabricacion"
+          }, {
+            "$ref" : "#/parameters/num_asientos"
+          }, {
+            "$ref" : "#/parameters/uso"
+          }, {
+            "$ref" : "#/parameters/num_serie"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Ok"
+            }
+          }
+        }
+      },
+      "/Auto" : {
+        "post" : {
+          "tags" : [ "Autos" ],
+          "parameters" : [ {
+            "$ref" : "#/parameters/Placa"
+          } ],
+          "summary" : "Buscar datos de auto",
+          "responses" : {
+            "200" : {
+              "description" : "Ok",
+              "schema" : {
+                "type" : "string",
+                "example" : {
+                  "Placa" : "C5R38D",
+                  "Clase" : "Camión",
+                  "Marca" : "Toyota",
+                  "Modelo" : "Corolla",
+                  "Año_fabricacion" : "2012",
+                  "num_asientos" : "4",
+                  "uso" : "Particular",
+                  "num_serie" : "MD3FCE0CA421928"
+                }
+              }
+            },
+            "404" : {
+              "description" : "NOT FOUND"
+            }
+          }
+        }
+      },
+      "/insertCliente" : {
+        "post" : {
+          "tags" : [ "Clientes" ],
+          "summary" : "Crear un nuevo registro de cliente.",
+          "parameters" : [ {
+            "$ref" : "#/parameters/Documento"
+          }, {
+            "$ref" : "#/parameters/Tipo"
+          }, {
+            "$ref" : "#/parameters/Nombre"
+          }, {
+            "$ref" : "#/parameters/Ap_paterno"
+          }, {
+            "$ref" : "#/parameters/Ap_materno"
+          }, {
+            "$ref" : "#/parameters/Email"
+          }, {
+            "$ref" : "#/parameters/Movil"
+          }, {
+            "$ref" : "#/parameters/Departamento"
+          }, {
+            "$ref" : "#/parameters/Provincia"
+          }, {
+            "$ref" : "#/parameters/Distrito"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Ok"
+            }
+          }
+        }
+      },
+      "/editCliente" : {
+        "put" : {
+          "tags" : [ "Clientes" ],
+          "summary" : "Actualiza la información de un cliente",
+          "parameters" : [ {
+            "$ref" : "#/parameters/Documento"
+          }, {
+            "$ref" : "#/parameters/Tipo"
+          }, {
+            "$ref" : "#/parameters/Nombre"
+          }, {
+            "$ref" : "#/parameters/Ap_paterno"
+          }, {
+            "$ref" : "#/parameters/Ap_materno"
+          }, {
+            "$ref" : "#/parameters/Email"
+          }, {
+            "$ref" : "#/parameters/Movil"
+          }, {
+            "$ref" : "#/parameters/Departamento"
+          }, {
+            "$ref" : "#/parameters/Provincia"
+          }, {
+            "$ref" : "#/parameters/Distrito"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Ok"
+            },
+            "404" : {
+              "description" : "el recurso de destino no existe"
+            }
+          }
+        }
+      },
+      "/Cliente" : {
+        "post" : {
+          "tags" : [ "Clientes" ],
+          "summary" : "Consultar cliente",
+          "parameters" : [ {
+            "$ref" : "#/parameters/Documento"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Ok",
+              "schema" : {
+                "type" : "string",
+                "example" : {
+                  "Documento" : "02658145",
+                  "Tipo de documento" : "DNI",
+                  "Nombre" : "Toyota",
+                  "Modelo" : "Jose",
+                  "ape_paterno" : "Flores",
+                  "ape_materno" : "Seminario",
+                  "Email" : "jflores@gmail.com",
+                  "Departamento" : "Lima",
+                  "Provincia" : "Lima",
+                  "Distrito" : "La Molina",
+                  "movil" : "985624159"
+                }
+              }
+            },
+            "404" : {
+              "description" : "el recurso de destino no"
+            }
+          }
+        }
+      },
+      "/marcas" : {
+        "post" : {
+          "summary" : "consulta marcas",
+          "tags" : [ "Otras Consultas" ],
+          "parameters" : [ {
+            "name" : "token",
+            "in" : "query",
+            "description" : "API",
+            "required" : false,
+            "type" : "string"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Ok",
+              "schema" : {
+                "type" : "string",
+                "example" : {
+                  "Acura" : "44",
+                  "Chevrolet" : "5",
+                  "Ford" : "11",
+                  "Ferrari" : "9"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/modelos" : {
+        "post" : {
+          "tags" : [ "Otras Consultas" ],
+          "summary" : "Consulta modelos",
+          "parameters" : [ {
+            "$ref" : "#/parameters/Marca"
+          } ],
+          "responses" : {
+            "200" : {
+              "description" : "Ok",
+              "schema" : {
+                "type" : "string",
+                "example" : {
+                  "AURIS" : "1270295",
+                  "Cynos" : "1270156",
+                  "FORTUNER" : "1276694",
+                  "YARIS" : "1271224"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/clases" : {
+        "post" : {
+          "tags" : [ "Otras Consultas" ],
+          "summary" : "Consulta clases",
+          "responses" : {
+            "200" : {
+              "description" : "Ok",
+              "schema" : {
+                "type" : "string",
+                "example" : {
+                  "AUTOMOVIL" : "1",
+                  "CAMION" : "5",
+                  "CAMIONETA PANEL" : "7",
+                  "CAMIONETA PICK UP" : "4"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/usos" : {
+        "post" : {
+          "tags" : [ "Otras Consultas" ],
+          "summary" : "Consulta usos",
+          "responses" : {
+            "200" : {
+              "description" : "Ok",
+              "schema" : {
+                "type" : "string",
+                "example" : {
+                  "CARGA / TRANSPORTE" : "9",
+                  "PARTICULAR" : "4",
+                  "TAXI" : "8"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters" : {
+      "Placa" : {
+        "name" : "Placa",
+        "in" : "query",
+        "description" : "Placa",
+        "required" : true,
+        "type" : "string"
+      },
+      "Clase" : {
+        "name" : "Clase",
+        "in" : "query",
+        "description" : "Clase",
+        "required" : true,
+        "type" : "string"
+      },
+      "Modelo" : {
+        "name" : "Modelo",
+        "in" : "query",
+        "description" : "Modelo",
+        "required" : true,
+        "type" : "string"
+      },
+      "fabricacion" : {
+        "name" : "Año_fabricacion",
+        "in" : "query",
+        "description" : "Año de fabricación",
+        "required" : true,
+        "type" : "string"
+      },
+      "num_asientos" : {
+        "name" : "num_asientos",
+        "in" : "query",
+        "description" : "Número de asientos",
+        "required" : true,
+        "type" : "string"
+      },
+      "uso" : {
+        "name" : "uso",
+        "in" : "query",
+        "description" : "Uso",
+        "required" : true,
+        "type" : "string"
+      },
+      "num_serie" : {
+        "name" : "num_serie",
+        "in" : "query",
+        "description" : "Número de serie",
+        "required" : true,
+        "type" : "string"
+      },
+      "Documento" : {
+        "name" : "Documento",
+        "in" : "query",
+        "description" : "Número de Documento",
+        "required" : true,
+        "type" : "string"
+      },
+      "Tipo" : {
+        "name" : "Tipo",
+        "in" : "query",
+        "description" : "Tipo de documento",
+        "required" : true,
+        "type" : "string"
+      },
+      "Nombre" : {
+        "name" : "Nombre",
+        "in" : "query",
+        "description" : "Nombre del cliente",
+        "required" : true,
+        "type" : "string"
+      },
+      "Ap_paterno" : {
+        "name" : "Ap_paterno",
+        "in" : "query",
+        "description" : "Apellido Paterno",
+        "required" : true,
+        "type" : "string"
+      },
+      "Ap_materno" : {
+        "name" : "Ap_materno",
+        "in" : "query",
+        "description" : "Apellido Materno",
+        "required" : true,
+        "type" : "string"
+      },
+      "Email" : {
+        "name" : "Email",
+        "in" : "query",
+        "description" : "Correo electrónico ",
+        "required" : true,
+        "type" : "string"
+      },
+      "Movil" : {
+        "name" : "Movil",
+        "in" : "query",
+        "description" : "Número de celular",
+        "required" : false,
+        "type" : "string"
+      },
+      "Departamento" : {
+        "name" : "Departamento",
+        "in" : "query",
+        "description" : "Departamento",
+        "required" : true,
+        "type" : "string"
+      },
+      "Provincia" : {
+        "name" : "Provincia",
+        "in" : "query",
+        "description" : "Provincia",
+        "required" : true,
+        "type" : "string"
+      },
+      "Distrito" : {
+        "name" : "Distrito",
+        "in" : "query",
+        "description" : "Distrito",
+        "required" : true,
+        "type" : "string"
+      },
+      "Marca" : {
+        "name" : "Marca",
+        "in" : "query",
+        "description" : "Marca de auto",
+        "required" : true,
+        "type" : "string"
+      }
+    },
+    "definitions" : {
+      "Autenticacionexitosa" : {
+        "properties" : {
+          "access_token" : {
+            "type" : "string"
+          },
+          "token_type" : {
+            "type" : "string"
+          },
+          "expires_in" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Cliente" : {
+        "properties" : {
+          "Documento" : {
+            "type" : "integer"
+          },
+          "Tipo de documento" : {
+            "type" : "string"
+          },
+          "Nombre" : {
+            "type" : "string"
+          },
+          "ape_paterno" : {
+            "type" : "string"
+          },
+          "ape_materno" : {
+            "type" : "string"
+          },
+          "Email" : {
+            "type" : "string"
+          },
+          "Departamento" : {
+            "type" : "string"
+          },
+          "Provincia" : {
+            "type" : "string"
+          },
+          "Distrito" : {
+            "type" : "string"
+          },
+          "movil" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Auto" : {
+        "properties" : {
+          "Placa" : {
+            "type" : "string"
+          },
+          "Clase" : {
+            "type" : "string"
+          },
+          "Marca" : {
+            "type" : "string"
+          },
+          "Modelo" : {
+            "type" : "string"
+          },
+          "Año_fabricacion" : {
+            "type" : "string"
+          },
+          "num_asientos" : {
+            "type" : "integer"
+          },
+          "uso" : {
+            "type" : "string"
+          },
+          "num_serie" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "schemes" : [ "https", "http" ],
+    "host" : "testsoat.interseguro.com.pe",
+    "basePath" : "/soat/general"
+  }
