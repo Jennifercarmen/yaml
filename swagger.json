@@ -413,7 +413,7 @@
       "name" : "movil",
       "in" : "query",
       "description" : "Número de celular",
-      "required" : false,
+      "required" : true,
       "type" : "string"
     },
     "departamento" : {
