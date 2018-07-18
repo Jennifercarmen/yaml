@@ -19,6 +19,7 @@
       "post" : {
         "tags" : [ "Autenticación" ],
         "summary" : "Obtener un token de autenticación",
+        "operationId" : "autenticacion",
         "parameters" : [ {
           "name" : "grant_type",
           "in" : "query",
@@ -48,7 +49,12 @@
           "401" : {
             "description" : "No Autorizado"
           }
-        }
+        },
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ],
+        "security" : [ {
+          "segurovehicular_auth" : [ "write:segurovehicular", "read:segurovehicular" ]
+        } ]
       }
     },
     "/insertAuto" : {
@@ -236,6 +242,7 @@
     "/marcas" : {
       "post" : {
         "summary" : "consulta marcas",
+        "operationId" : "ObtenerMarcas",
         "tags" : [ "Otras Consultas" ],
         "parameters" : [ {
           "name" : "token",
@@ -257,7 +264,9 @@
               }
             }
           }
-        }
+        },
+        "consumes" : [ "application/json", "application/xml" ],
+        "produces" : [ "application/json", "application/xml" ]
       }
     },
     "/modelos" : {
@@ -527,6 +536,26 @@
         }
       }
     }
+  },
+  "securityDefinitions" : {
+    "segurovehicular_auth" : {
+      "type" : "oauth2",
+      "authorizationUrl" : "testsoat.interseguro.com.pe/soat/oauth/",
+      "flow" : "implicit",
+      "scopes" : {
+        "write:segurovehicular" : "modify pets in your account",
+        "read:segurovehicular" : "read your segurovehicular"
+      }
+    },
+    "api_key" : {
+      "type" : "apiKey",
+      "name" : "api_key",
+      "in" : "header"
+    }
+  },
+  "externalDocs" : {
+    "description" : "Find out more about Swagger",
+    "url" : "http://swagger.io"
   },
   "schemes" : [ "https", "http" ],
   "host" : "testsoat.interseguro.com.pe",
