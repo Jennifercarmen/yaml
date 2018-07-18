@@ -19,11 +19,10 @@
       "post" : {
         "tags" : [ "Autenticación" ],
         "summary" : "Obtener un token de autenticación",
-        "operationId" : "autenticacion",
         "parameters" : [ {
           "name" : "grant_type",
           "in" : "query",
-          "description" : "Tipo de acceso",
+          "description" : "tipo de acceso",
           "required" : true,
           "type" : "string"
         }, {
@@ -43,56 +42,30 @@
           "200" : {
             "description" : "success",
             "schema" : {
-              "$ref" : "#/definitions/Autenticacionexitosa"
+              "type" : "string",
+              "example" : {
+                "access_token" : "string",
+                "token_type" : "string",
+                "expires_in" : 0
+              }
             }
           },
           "401" : {
             "description" : "No Autorizado"
           }
-        },
-        "consumes" : [ "application/json", "application/xml" ],
-        "produces" : [ "application/json", "application/xml" ],
-        "security" : [ {
-          "segurovehicular_auth" : [ "write:segurovehicular", "read:segurovehicular" ]
-        } ]
+        }
       }
     },
-    "/insertAuto" : {
+    "/auto" : {
       "post" : {
         "tags" : [ "Autos" ],
         "summary" : "Crear un nuevo registro de auto",
         "parameters" : [ {
-          "$ref" : "#/parameters/Placa"
+          "$ref" : "#/parameters/placa"
         }, {
-          "$ref" : "#/parameters/Clase"
+          "$ref" : "#/parameters/clase"
         }, {
-          "$ref" : "#/parameters/Modelo"
-        }, {
-          "$ref" : "#/parameters/fabricacion"
-        }, {
-          "$ref" : "#/parameters/num_asientos"
-        }, {
-          "$ref" : "#/parameters/uso"
-        }, {
-          "$ref" : "#/parameters/num_serie"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Ok"
-          }
-        }
-      }
-    },
-    "/editAuto" : {
-      "put" : {
-        "tags" : [ "Autos" ],
-        "summary" : "Actualiza la información de un auto",
-        "parameters" : [ {
-          "$ref" : "#/parameters/Placa"
-        }, {
-          "$ref" : "#/parameters/Clase"
-        }, {
-          "$ref" : "#/parameters/Modelo"
+          "$ref" : "#/parameters/modelo"
         }, {
           "$ref" : "#/parameters/fabricacion"
         }, {
@@ -110,10 +83,36 @@
       }
     },
     "/Auto" : {
-      "post" : {
+      "put" : {
+        "tags" : [ "Autos" ],
+        "summary" : "Actualiza la información de un auto",
+        "parameters" : [ {
+          "$ref" : "#/parameters/placa"
+        }, {
+          "$ref" : "#/parameters/clase"
+        }, {
+          "$ref" : "#/parameters/modelo"
+        }, {
+          "$ref" : "#/parameters/fabricacion"
+        }, {
+          "$ref" : "#/parameters/num_asientos"
+        }, {
+          "$ref" : "#/parameters/uso"
+        }, {
+          "$ref" : "#/parameters/num_serie"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Ok"
+          }
+        }
+      }
+    },
+    "/auto/placa" : {
+      "get" : {
         "tags" : [ "Autos" ],
         "parameters" : [ {
-          "$ref" : "#/parameters/Placa"
+          "$ref" : "#/parameters/placa"
         } ],
         "summary" : "Buscar datos de auto",
         "responses" : {
@@ -122,11 +121,11 @@
             "schema" : {
               "type" : "string",
               "example" : {
-                "Placa" : "C5R38D",
-                "Clase" : "Camión",
-                "Marca" : "Toyota",
-                "Modelo" : "Corolla",
-                "Año_fabricacion" : "2012",
+                "placa" : "C5R38D",
+                "clase" : "Camión",
+                "marca" : "Toyota",
+                "modelo" : "Corolla",
+                "año_fabricacion" : "2012",
                 "num_asientos" : "4",
                 "uso" : "Particular",
                 "num_serie" : "MD3FCE0CA421928"
@@ -139,30 +138,30 @@
         }
       }
     },
-    "/insertCliente" : {
+    "/cliente" : {
       "post" : {
         "tags" : [ "Clientes" ],
         "summary" : "Crear un nuevo registro de cliente.",
         "parameters" : [ {
-          "$ref" : "#/parameters/Documento"
+          "$ref" : "#/parameters/documento"
         }, {
-          "$ref" : "#/parameters/Tipo"
+          "$ref" : "#/parameters/tipo"
         }, {
-          "$ref" : "#/parameters/Nombre"
+          "$ref" : "#/parameters/nombre"
         }, {
-          "$ref" : "#/parameters/Ap_paterno"
+          "$ref" : "#/parameters/ape_paterno"
         }, {
-          "$ref" : "#/parameters/Ap_materno"
+          "$ref" : "#/parameters/ape_materno"
         }, {
-          "$ref" : "#/parameters/Email"
+          "$ref" : "#/parameters/email"
         }, {
-          "$ref" : "#/parameters/Movil"
+          "$ref" : "#/parameters/movil"
         }, {
-          "$ref" : "#/parameters/Departamento"
+          "$ref" : "#/parameters/departamento"
         }, {
-          "$ref" : "#/parameters/Provincia"
+          "$ref" : "#/parameters/provincia"
         }, {
-          "$ref" : "#/parameters/Distrito"
+          "$ref" : "#/parameters/distrito"
         } ],
         "responses" : {
           "200" : {
@@ -171,30 +170,30 @@
         }
       }
     },
-    "/editCliente" : {
+    "/ecliente" : {
       "put" : {
         "tags" : [ "Clientes" ],
         "summary" : "Actualiza la información de un cliente",
         "parameters" : [ {
-          "$ref" : "#/parameters/Documento"
+          "$ref" : "#/parameters/documento"
         }, {
-          "$ref" : "#/parameters/Tipo"
+          "$ref" : "#/parameters/tipo"
         }, {
-          "$ref" : "#/parameters/Nombre"
+          "$ref" : "#/parameters/nombre"
         }, {
-          "$ref" : "#/parameters/Ap_paterno"
+          "$ref" : "#/parameters/ape_paterno"
         }, {
-          "$ref" : "#/parameters/Ap_materno"
+          "$ref" : "#/parameters/ape_materno"
         }, {
-          "$ref" : "#/parameters/Email"
+          "$ref" : "#/parameters/email"
         }, {
-          "$ref" : "#/parameters/Movil"
+          "$ref" : "#/parameters/movil"
         }, {
-          "$ref" : "#/parameters/Departamento"
+          "$ref" : "#/parameters/departamento"
         }, {
-          "$ref" : "#/parameters/Provincia"
+          "$ref" : "#/parameters/provincia"
         }, {
-          "$ref" : "#/parameters/Distrito"
+          "$ref" : "#/parameters/distrito"
         } ],
         "responses" : {
           "200" : {
@@ -206,12 +205,12 @@
         }
       }
     },
-    "/Cliente" : {
-      "post" : {
+    "/cliente/documento" : {
+      "get" : {
         "tags" : [ "Clientes" ],
         "summary" : "Consultar cliente",
         "parameters" : [ {
-          "$ref" : "#/parameters/Documento"
+          "$ref" : "#/parameters/documento"
         } ],
         "responses" : {
           "200" : {
@@ -220,12 +219,12 @@
               "type" : "string",
               "example" : {
                 "Documento" : "02658145",
-                "Tipo de documento" : "DNI",
-                "Nombre" : "Toyota",
-                "Modelo" : "Jose",
+                "tipo de documento" : "DNI",
+                "nombre" : "Toyota",
+                "modelo" : "Jose",
                 "ape_paterno" : "Flores",
                 "ape_materno" : "Seminario",
-                "Email" : "jflores@gmail.com",
+                "email" : "jflores@gmail.com",
                 "Departamento" : "Lima",
                 "Provincia" : "Lima",
                 "Distrito" : "La Molina",
@@ -234,7 +233,7 @@
             }
           },
           "404" : {
-            "description" : "el recurso de destino no"
+            "description" : "NOT FOUND"
           }
         }
       }
@@ -242,15 +241,7 @@
     "/marcas" : {
       "post" : {
         "summary" : "consulta marcas",
-        "operationId" : "ObtenerMarcas",
         "tags" : [ "Otras Consultas" ],
-        "parameters" : [ {
-          "name" : "token",
-          "in" : "query",
-          "description" : "API",
-          "required" : false,
-          "type" : "string"
-        } ],
         "responses" : {
           "200" : {
             "description" : "Ok",
@@ -264,9 +255,7 @@
               }
             }
           }
-        },
-        "consumes" : [ "application/json", "application/xml" ],
-        "produces" : [ "application/json", "application/xml" ]
+        }
       }
     },
     "/modelos" : {
@@ -274,7 +263,7 @@
         "tags" : [ "Otras Consultas" ],
         "summary" : "Consulta modelos",
         "parameters" : [ {
-          "$ref" : "#/parameters/Marca"
+          "$ref" : "#/parameters/marca"
         } ],
         "responses" : {
           "200" : {
@@ -333,29 +322,29 @@
     }
   },
   "parameters" : {
-    "Placa" : {
-      "name" : "Placa",
+    "placa" : {
+      "name" : "placa",
       "in" : "query",
-      "description" : "Placa",
+      "description" : "placa",
       "required" : true,
       "type" : "string"
     },
-    "Clase" : {
-      "name" : "Clase",
+    "clase" : {
+      "name" : "placa",
       "in" : "query",
-      "description" : "Clase",
+      "description" : "lase",
       "required" : true,
       "type" : "string"
     },
-    "Modelo" : {
-      "name" : "Modelo",
+    "modelo" : {
+      "name" : "modelo",
       "in" : "query",
-      "description" : "Modelo",
+      "description" : "modelo",
       "required" : true,
       "type" : "string"
     },
     "fabricacion" : {
-      "name" : "Año_fabricacion",
+      "name" : "año_fabricacion",
       "in" : "query",
       "description" : "Año de fabricación",
       "required" : true,
@@ -382,180 +371,83 @@
       "required" : true,
       "type" : "string"
     },
-    "Documento" : {
-      "name" : "Documento",
+    "documento" : {
+      "name" : "documento",
       "in" : "query",
       "description" : "Número de Documento",
       "required" : true,
       "type" : "string"
     },
-    "Tipo" : {
-      "name" : "Tipo",
+    "tipo" : {
+      "name" : "tipo",
       "in" : "query",
-      "description" : "Tipo de documento",
+      "description" : "tipo de documento",
       "required" : true,
       "type" : "string"
     },
-    "Nombre" : {
-      "name" : "Nombre",
+    "nombre" : {
+      "name" : "nombre",
       "in" : "query",
-      "description" : "Nombre del cliente",
+      "description" : "nombre del cliente",
       "required" : true,
       "type" : "string"
     },
-    "Ap_paterno" : {
-      "name" : "Ap_paterno",
+    "ape_paterno" : {
+      "name" : "ape_paterno",
       "in" : "query",
       "description" : "Apellido Paterno",
       "required" : true,
       "type" : "string"
     },
-    "Ap_materno" : {
-      "name" : "Ap_materno",
+    "ape_materno" : {
+      "name" : "ape_materno",
       "in" : "query",
       "description" : "Apellido Materno",
       "required" : true,
       "type" : "string"
     },
-    "Email" : {
-      "name" : "Email",
+    "email" : {
+      "name" : "email",
       "in" : "query",
-      "description" : "Correo electrónico ",
+      "description" : "Correo electrónico",
       "required" : true,
       "type" : "string"
     },
-    "Movil" : {
-      "name" : "Movil",
+    "movil" : {
+      "name" : "movil",
       "in" : "query",
       "description" : "Número de celular",
       "required" : false,
       "type" : "string"
     },
-    "Departamento" : {
-      "name" : "Departamento",
+    "departamento" : {
+      "name" : "departamento",
       "in" : "query",
       "description" : "Departamento",
       "required" : true,
       "type" : "string"
     },
-    "Provincia" : {
-      "name" : "Provincia",
+    "provincia" : {
+      "name" : "provincia",
       "in" : "query",
       "description" : "Provincia",
       "required" : true,
       "type" : "string"
     },
-    "Distrito" : {
-      "name" : "Distrito",
+    "distrito" : {
+      "name" : "distrito",
       "in" : "query",
       "description" : "Distrito",
       "required" : true,
       "type" : "string"
     },
-    "Marca" : {
-      "name" : "Marca",
+    "marca" : {
+      "name" : "marca",
       "in" : "query",
       "description" : "Marca de auto",
       "required" : true,
       "type" : "string"
     }
-  },
-  "definitions" : {
-    "Autenticacionexitosa" : {
-      "properties" : {
-        "access_token" : {
-          "type" : "string"
-        },
-        "token_type" : {
-          "type" : "string"
-        },
-        "expires_in" : {
-          "type" : "integer"
-        }
-      }
-    },
-    "Cliente" : {
-      "properties" : {
-        "Documento" : {
-          "type" : "integer"
-        },
-        "Tipo de documento" : {
-          "type" : "string"
-        },
-        "Nombre" : {
-          "type" : "string"
-        },
-        "ape_paterno" : {
-          "type" : "string"
-        },
-        "ape_materno" : {
-          "type" : "string"
-        },
-        "Email" : {
-          "type" : "string"
-        },
-        "Departamento" : {
-          "type" : "string"
-        },
-        "Provincia" : {
-          "type" : "string"
-        },
-        "Distrito" : {
-          "type" : "string"
-        },
-        "movil" : {
-          "type" : "string"
-        }
-      }
-    },
-    "Auto" : {
-      "properties" : {
-        "Placa" : {
-          "type" : "string"
-        },
-        "Clase" : {
-          "type" : "string"
-        },
-        "Marca" : {
-          "type" : "string"
-        },
-        "Modelo" : {
-          "type" : "string"
-        },
-        "Año_fabricacion" : {
-          "type" : "string"
-        },
-        "num_asientos" : {
-          "type" : "integer"
-        },
-        "uso" : {
-          "type" : "string"
-        },
-        "num_serie" : {
-          "type" : "string"
-        }
-      }
-    }
-  },
-  "securityDefinitions" : {
-    "segurovehicular_auth" : {
-      "type" : "oauth2",
-      "authorizationUrl" : "testsoat.interseguro.com.pe/soat/oauth/",
-      "flow" : "implicit",
-      "scopes" : {
-        "write:segurovehicular" : "modify pets in your account",
-        "read:segurovehicular" : "read your segurovehicular"
-      }
-    },
-    "api_key" : {
-      "type" : "apiKey",
-      "name" : "api_key",
-      "in" : "header"
-    }
-  },
-  "externalDocs" : {
-    "description" : "Find out more about Swagger",
-    "url" : "http://swagger.io"
   },
   "schemes" : [ "https", "http" ],
   "host" : "testsoat.interseguro.com.pe",
