@@ -3,7 +3,7 @@
   "info" : {
     "version" : "1.0.0",
     "title" : "Seguro Vehicular",
-    "description" : "¡Bienvenido a la API de seguro vehicular! \nEsta documentación proporciona instrucciones para acceder a la API y debería ayudarlo a familiarizarse con los recursos disponibles.\n ### Cómo empezar\n ----------------------------------------------------------------\n El acceso a la API requiere un token de acceso que se usará en solicitudes posteriores como consultas, registros y actualizaciones\n ### Solicitud de token de acceso\n ----------------------------------------------------------------\n Para obtener su token de acceso deberá llamar al siguiente método POST\n   `testsoat.interseguro.com.pe/soat/oauth/token`\n Ingresando como parámetros su información (como grand_type, el ID y el secreto de cliente)\n Si se aprueba esta petición, se le proporcionará un token de acceso\n El token se puede obtener en la /oauth/token.\n\n\n ### Uso\n  ----------------------------------------------------------------\n Para consumir el API se accedera a través de llamadas HTTP usando POST a ....\n ### \n     testsoat.interseguro.com.pe/soat/general?access_token=$ACCESS_TOKEN [POST]\n"
+    "description" : "¡Bienvenido a la API de seguro vehicular! \nEsta documentación proporciona instrucciones para acceder a la API y debería ayudarlo a familiarizarse con los recursos disponibles.\n ### Cómo empezar\n ----------------------------------------------------------------\n El acceso a la API requiere un token de acceso que se usará en solicitudes posteriores como consultas, registros y actualizaciones\n ### Solicitud de token de acceso\n ----------------------------------------------------------------\n Para obtener su token de acceso deberá llamar al siguiente método POST\n   `testsoat.interseguro.com.pe/soat/oauth/token`\n Ingresando como parámetros su información (como grand_type, el ID y el secreto de cliente)\n Si se aprueba esta petición, se le proporcionará un token de acceso\n El token se puede obtener en la /oauth/token.\n"
   },
   "tags" : [ {
     "name" : "Autenticación"
@@ -104,9 +104,7 @@
             "description" : "Ok"
           }
         }
-      }
-    },
-    "/auto/placa" : {
+      },
       "get" : {
         "tags" : [ "Autos" ],
         "parameters" : [ {
@@ -199,9 +197,7 @@
             "description" : "el recurso de destino no existe"
           }
         }
-      }
-    },
-    "/cliente/documento" : {
+      },
       "get" : {
         "tags" : [ "Clientes" ],
         "summary" : "Consultar cliente",
