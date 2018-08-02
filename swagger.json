@@ -90,7 +90,21 @@
         },
         "responses" : {
           "200" : {
-            "description" : "Ok"
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "example" : {
+                    "success" : true,
+                    "mensaje" : "null",
+                    "extra" : "null",
+                    "item" : "null",
+                    "items" : "null"
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -112,15 +126,31 @@
         },
         "responses" : {
           "200" : {
-            "description" : "Ok"
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "example" : {
+                    "success" : true,
+                    "mensaje" : "null",
+                    "extra" : "null",
+                    "item" : "null",
+                    "items" : "null"
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
-    "/auto/placa" : {
+    "/auto/{placa}" : {
       "get" : {
         "tags" : [ "Autos" ],
         "parameters" : [ {
+          "$ref" : "#/components/parameters/Authorization"
+        }, {
           "$ref" : "#/components/parameters/placa"
         } ],
         "summary" : "Buscar datos de auto",
@@ -179,7 +209,21 @@
         },
         "responses" : {
           "200" : {
-            "description" : "Ok"
+            "description" : "Ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "example" : {
+                    "success" : true,
+                    "mensaje" : "null",
+                    "extra" : "null",
+                    "item" : "null",
+                    "items" : "null"
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -204,16 +248,32 @@
             "description" : "Ok"
           },
           "404" : {
-            "description" : "el recurso de destino no existe"
+            "description" : "el recurso de destino no existe",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "example" : {
+                    "success" : true,
+                    "mensaje" : "null",
+                    "extra" : "null",
+                    "item" : "null",
+                    "items" : "null"
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
-    "/cliente/documento" : {
+    "/cliente/{documento}" : {
       "get" : {
         "tags" : [ "Clientes" ],
         "summary" : "Consultar cliente",
         "parameters" : [ {
+          "$ref" : "#/components/parameters/Authorization"
+        }, {
           "$ref" : "#/components/parameters/documento"
         } ],
         "responses" : {
@@ -257,6 +317,9 @@
       }
     },
     "/marcas" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/Authorization"
+      } ],
       "post" : {
         "summary" : "consulta marcas",
         "tags" : [ "Otras Consultas" ],
@@ -285,6 +348,8 @@
         "tags" : [ "Otras Consultas" ],
         "summary" : "Consulta modelos",
         "parameters" : [ {
+          "$ref" : "#/components/parameters/Authorization"
+        }, {
           "$ref" : "#/components/parameters/marca"
         } ],
         "responses" : {
@@ -310,6 +375,9 @@
     "/clases" : {
       "post" : {
         "tags" : [ "Otras Consultas" ],
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/Authorization"
+        } ],
         "summary" : "Consulta clases",
         "responses" : {
           "200" : {
@@ -335,6 +403,9 @@
       "post" : {
         "tags" : [ "Otras Consultas" ],
         "summary" : "Consulta usos",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/Authorization"
+        } ],
         "responses" : {
           "200" : {
             "description" : "Ok",
@@ -357,6 +428,9 @@
     "/departamentos" : {
       "post" : {
         "summary" : "consulta Departamentos",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/Authorization"
+        } ],
         "tags" : [ "Ubigeo" ],
         "responses" : {
           "200" : {
@@ -395,6 +469,9 @@
       "post" : {
         "summary" : "consulta Provincias",
         "tags" : [ "Ubigeo" ],
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/Authorization"
+        } ],
         "responses" : {
           "200" : {
             "description" : "Ok",
@@ -432,6 +509,9 @@
       "post" : {
         "summary" : "consulta Distritos",
         "tags" : [ "Ubigeo" ],
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/Authorization"
+        } ],
         "responses" : {
           "200" : {
             "description" : "Ok",
@@ -542,7 +622,7 @@
       },
       "placa" : {
         "name" : "placa",
-        "in" : "query",
+        "in" : "path",
         "description" : "placa",
         "required" : true,
         "schema" : {
@@ -614,7 +694,7 @@
       },
       "documento" : {
         "name" : "documento",
-        "in" : "query",
+        "in" : "path",
         "description" : "Número de Documento",
         "required" : true,
         "schema" : {
