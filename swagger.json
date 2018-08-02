@@ -1,12 +1,12 @@
 {
   "openapi" : "3.0.0",
   "servers" : [ {
-    "url" : "https://testsoat.interseguro.com.pe/soat/general/"
+    "url" : "https://testsoat.interseguro.com.pe/api-vehicular/v1"
   } ],
   "info" : {
     "version" : "1.0.0-oas3",
     "title" : "Seguro Vehicular",
-    "description" : "¡Bienvenido a la API de seguro vehicular! \nEsta documentación proporciona instrucciones para acceder a la API y debería ayudarlo a familiarizarse con los recursos disponibles.\n ### Cómo empezar\n ----------------------------------------------------------------\n El acceso a la API requiere un token de acceso que se usará en solicitudes posteriores como consultas, registros y actualizaciones\n ### Solicitud de token de acceso\n ----------------------------------------------------------------\n Para obtener su token de acceso deberá llamar al siguiente método POST\n   `testsoat.interseguro.com.pe/soat/oauth/token`\n Ingresando como parámetros su información (como grand_type, el ID y el secreto de cliente)\n Si se aprueba esta petición, se le proporcionará un token de acceso\n"
+    "description" : "¡Bienvenido a la API de seguro vehicular! \nEsta documentación proporciona instrucciones para acceder a la API y debería ayudarlo a familiarizarse con los recursos disponibles.\n ### Cómo empezar\n ----------------------------------------------------------------\n El acceso a la API requiere un token de acceso que se usará en solicitudes posteriores como consultas, registros y actualizaciones\n ### Solicitud de token de acceso\n ----------------------------------------------------------------\n Para obtener su token de acceso deberá llamar al siguiente método POST\n   `testsoat.interseguro.com.pe/api-vehicular/v1/oauth/access_token`\n Ingresando como parámetros su información (como grand_type, el ID y el secreto de cliente)\n Si se aprueba esta petición, se le proporcionará un token de acceso\n"
   },
   "tags" : [ {
     "name" : "Autenticación"
@@ -20,35 +20,20 @@
     "name" : "Ubigeo"
   } ],
   "paths" : {
-    "/oauth/token" : {
+    "/oauth/access_token" : {
       "post" : {
         "tags" : [ "Autenticación" ],
         "summary" : "Obtener un token de autenticación",
-        "parameters" : [ {
-          "name" : "grant_type",
-          "in" : "query",
-          "description" : "tipo de acceso",
+        "requestBody" : {
           "required" : true,
-          "schema" : {
-            "type" : "string"
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/acces_token"
+              }
+            }
           }
-        }, {
-          "name" : "client_id",
-          "in" : "query",
-          "description" : "Identificador",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "client_secret",
-          "in" : "query",
-          "description" : " Clave",
-          "required" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
+        },
         "responses" : {
           "200" : {
             "description" : "success",
@@ -83,7 +68,7 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/Auto"
+                "$ref" : "#/components/schemas/acces_token"
               }
             }
           }
@@ -548,6 +533,20 @@
   },
   "components" : {
     "schemas" : {
+      "acces_token" : {
+        "type" : "object",
+        "properties" : {
+          "grant_type" : {
+            "type" : "string"
+          },
+          "client_id" : {
+            "type" : "string"
+          },
+          "client_secret" : {
+            "type" : "string"
+          }
+        }
+      },
       "Auto" : {
         "type" : "object",
         "properties" : {
