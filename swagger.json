@@ -34,7 +34,7 @@
           }
         }, {
           "name" : "client_id",
-          "in" : "header",
+          "in" : "query",
           "description" : "Identificador",
           "required" : true,
           "schema" : {
