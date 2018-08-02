@@ -49,9 +49,6 @@
                 }
               }
             }
-          },
-          "401" : {
-            "description" : "No Autorizado"
           }
         }
       }
@@ -152,15 +149,15 @@
                     "extra" : "null",
                     "item" : {
                       "placa" : "C5R38D",
-                      "clase" : "xxx",
+                      "clase" : "Automovil",
                       "uso" : "Particular",
                       "marca" : "Toyota",
                       "modelo" : "Corolla",
-                      "idClase" : 1,
-                      "idMarca" : 2,
-                      "idModelo" : 3,
-                      "año_fabricacion" : "2012",
-                      "num_asientos" : "4",
+                      "idclase" : 1,
+                      "idmarca" : 2,
+                      "idmodelo" : 3,
+                      "anio_fabricacion" : 2012,
+                      "num_asientos" : 4,
                       "num_serie" : "MD3FCE0CA421928"
                     },
                     "items" : "null"
@@ -168,9 +165,6 @@
                 }
               }
             }
-          },
-          "404" : {
-            "description" : "NOT FOUND"
           }
         }
       }
@@ -202,7 +196,7 @@
                   "example" : {
                     "success" : true,
                     "mensaje" : "null",
-                    "extra" : "null",
+                    "extra" : 16345709,
                     "item" : "null",
                     "items" : "null"
                   }
@@ -223,7 +217,43 @@
           "content" : {
             "application/json" : {
               "schema" : {
-                "$ref" : "#/components/schemas/Cliente"
+                "type" : "object",
+                "required" : [ "nombre", "ape_paterno", "ape_materno", "documento", "email", "celular", "iddepartamento", "idprovincia", "iddistrito" ],
+                "properties" : {
+                  "idcliente" : {
+                    "type" : "string"
+                  },
+                  "documento" : {
+                    "type" : "string"
+                  },
+                  "nombre" : {
+                    "type" : "string"
+                  },
+                  "ape_paterno" : {
+                    "type" : "string"
+                  },
+                  "ape_materno" : {
+                    "type" : "string"
+                  },
+                  "fecha_nac" : {
+                    "type" : "string"
+                  },
+                  "email" : {
+                    "type" : "string"
+                  },
+                  "celular" : {
+                    "type" : "string"
+                  },
+                  "iddepartamento" : {
+                    "type" : "number"
+                  },
+                  "idprovincia" : {
+                    "type" : "number"
+                  },
+                  "iddistrito" : {
+                    "type" : "number"
+                  }
+                }
               }
             }
           }
@@ -245,9 +275,6 @@
                 }
               }
             }
-          },
-          "404" : {
-            "description" : "el recurso de destino no existe"
           }
         }
       }
@@ -273,30 +300,28 @@
                     "mensaje" : "null",
                     "extra" : "null",
                     "item" : {
+                      "idcliente" : 16345709,
                       "documento" : 2658145.0,
-                      "tipo de documento" : "DNI",
-                      "nombre" : "Jose",
-                      "ape_paterno" : "Flores",
-                      "ape_materno" : "Seminario",
-                      "direccion" : "xxx",
-                      "email" : "jflores@gmail.com",
-                      "fecha_nac" : "dd/mm/yy",
+                      "tipo_documento" : "DNI",
+                      "nombre" : "Juan Manuel",
+                      "ape_paterno" : "Soto",
+                      "ape_materno" : "Gutierrez",
+                      "direccion" : "Calle Falsa 123",
+                      "email" : "vehicular@yopmail.com",
+                      "celular" : "987456123",
+                      "fecha_nac" : "dd/mm/yyyy",
                       "iddepartamento" : 15,
                       "departamento" : "Lima",
-                      "idprovincia" : 12,
-                      "drovincia" : "Lima",
-                      "iddistrito" : 8,
-                      "distrito" : "La Molina",
-                      "movil" : "985624159"
+                      "idprovincia" : 134,
+                      "provincia" : "Lima",
+                      "iddistrito" : 1340,
+                      "distrito" : "Cercado de Lima"
                     },
                     "items" : "null"
                   }
                 }
               }
             }
-          },
-          "404" : {
-            "description" : "NOT FOUND"
           }
         }
       }
@@ -316,10 +341,23 @@
                 "schema" : {
                   "type" : "string",
                   "example" : {
-                    "id" : "44",
-                    "descripcion" : "5",
-                    "Ford" : "11",
-                    "Ferrari" : "9"
+                    "success" : true,
+                    "mensaje" : "null",
+                    "extra" : "null",
+                    "item" : "null",
+                    "items" : [ {
+                      "id" : 44,
+                      "nombre" : "Ford"
+                    }, {
+                      "id" : 20,
+                      "nombre" : "Ferrari"
+                    }, {
+                      "id" : 10,
+                      "nombre" : "FIAT"
+                    }, {
+                      "id" : 11,
+                      "nombre" : "FOTON"
+                    } ]
                   }
                 }
               }
@@ -334,9 +372,23 @@
         "summary" : "Consulta modelos",
         "parameters" : [ {
           "$ref" : "#/components/parameters/Authorization"
-        }, {
-          "$ref" : "#/components/parameters/marca"
         } ],
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "required" : [ "idmarca" ],
+                "properties" : {
+                  "idmarca" : {
+                    "type" : "number"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses" : {
           "200" : {
             "description" : "Ok",
@@ -345,10 +397,23 @@
                 "schema" : {
                   "type" : "string",
                   "example" : {
-                    "AURIS" : "1270295",
-                    "Cynos" : "1270156",
-                    "FORTUNER" : "1276694",
-                    "YARIS" : "1271224"
+                    "success" : true,
+                    "mensaje" : "null",
+                    "extra" : "null",
+                    "item" : "null",
+                    "items" : [ {
+                      "id" : 1270295,
+                      "nombre" : "AURIS"
+                    }, {
+                      "id" : 1270156,
+                      "nombre" : "Cynos"
+                    }, {
+                      "id" : 1276694,
+                      "nombre" : "FORTUNER"
+                    }, {
+                      "id" : 1271224,
+                      "nombre" : "YARIS"
+                    } ]
                   }
                 }
               }
@@ -372,10 +437,23 @@
                 "schema" : {
                   "type" : "string",
                   "example" : {
-                    "AUTOMOVIL" : "1",
-                    "CAMION" : "5",
-                    "CAMIONETA PANEL" : "7",
-                    "CAMIONETA PICK UP" : "4"
+                    "success" : true,
+                    "mensaje" : "null",
+                    "extra" : "null",
+                    "item" : "null",
+                    "items" : [ {
+                      "id" : 1,
+                      "nombre" : "AUTOMOVIL"
+                    }, {
+                      "id" : 5,
+                      "nombre" : "CAMION"
+                    }, {
+                      "id" : 7,
+                      "nombre" : "CAMIONETA PICK UP"
+                    }, {
+                      "id" : 4,
+                      "nombre" : "CAMIONETA PANEL"
+                    } ]
                   }
                 }
               }
@@ -399,9 +477,20 @@
                 "schema" : {
                   "type" : "string",
                   "example" : {
-                    "CARGA / TRANSPORTE" : "9",
-                    "PARTICULAR" : "4",
-                    "TAXI" : "8"
+                    "success" : true,
+                    "mensaje" : "null",
+                    "extra" : "null",
+                    "item" : "null",
+                    "items" : [ {
+                      "id" : 4,
+                      "nombre" : "CARGA / TRANSPORTE"
+                    }, {
+                      "id" : 8,
+                      "nombre" : "PARTICULAR"
+                    }, {
+                      "id" : 9,
+                      "nombre" : "TAXI"
+                    } ]
                   }
                 }
               }
@@ -457,6 +546,22 @@
         "parameters" : [ {
           "$ref" : "#/components/parameters/Authorization"
         } ],
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "required" : [ "iddepartamento" ],
+                "properties" : {
+                  "iddepartamento" : {
+                    "type" : "number"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses" : {
           "200" : {
             "description" : "Ok",
@@ -497,6 +602,25 @@
         "parameters" : [ {
           "$ref" : "#/components/parameters/Authorization"
         } ],
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "required" : [ "idprovincia", "iddistrito" ],
+                "properties" : {
+                  "idprovincia" : {
+                    "type" : "number"
+                  },
+                  "iddistrito" : {
+                    "type" : "number"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses" : {
           "200" : {
             "description" : "Ok",
@@ -549,6 +673,7 @@
       },
       "Auto" : {
         "type" : "object",
+        "required" : [ "placa", "anio_fabricacion", "idclase", "iduso", "idmarca", "idmodelo", "num_asientos", "num_serie" ],
         "properties" : {
           "placa" : {
             "type" : "string"
@@ -572,30 +697,34 @@
             "type" : "number"
           },
           "num_serie" : {
-            "type" : "number"
+            "type" : "string"
           }
         }
       },
       "Cliente" : {
         "type" : "object",
+        "required" : [ "nombre", "ape_paterno", "ape_materno", "documento", "email", "celular", "iddepartamento", "idprovincia", "iddistrito" ],
         "properties" : {
+          "documento" : {
+            "type" : "string"
+          },
           "nombre" : {
             "type" : "string"
           },
           "ape_paterno" : {
             "type" : "string"
           },
-          "ap_materno" : {
+          "ape_materno" : {
             "type" : "string"
           },
-          "documento" : {
-            "type" : "number"
+          "fecha_nac" : {
+            "type" : "string"
           },
           "email" : {
             "type" : "string"
           },
-          "movil" : {
-            "type" : "number"
+          "celular" : {
+            "type" : "string"
           },
           "iddepartamento" : {
             "type" : "number"
@@ -613,7 +742,7 @@
       "Authorization" : {
         "name" : "Authorization",
         "in" : "header",
-        "description" : "Llave de autorización",
+        "description" : "Llave de autorización (Ej. Bearer token_recibido)",
         "required" : true,
         "schema" : {
           "type" : "string"
@@ -697,7 +826,7 @@
         "description" : "Número de Documento",
         "required" : true,
         "schema" : {
-          "type" : "number"
+          "type" : "string"
         }
       },
       "nombre" : {
@@ -736,8 +865,8 @@
           "type" : "string"
         }
       },
-      "movil" : {
-        "name" : "movil",
+      "celular" : {
+        "name" : "celular",
         "in" : "query",
         "description" : "Número de celular",
         "required" : true,
