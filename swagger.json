@@ -540,7 +540,7 @@
             "type" : "string"
           },
           "client_id" : {
-            "type" : "number"
+            "type" : "string"
           },
           "client_secret" : {
             "type" : "string"
@@ -597,14 +597,14 @@
           "movil" : {
             "type" : "number"
           },
-          "departamento" : {
-            "type" : "string"
+          "iddepartamento" : {
+            "type" : "number"
           },
-          "provincia" : {
-            "type" : "string"
+          "idprovincia" : {
+            "type" : "number"
           },
-          "distrito" : {
-            "type" : "string"
+          "iddistrito" : {
+            "type" : "number"
           }
         }
       }
